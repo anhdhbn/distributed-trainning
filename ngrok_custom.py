@@ -14,6 +14,7 @@ import requests
 
 
 def _run_ngrok(port):
+    print(type(port))
     ngrok_path = str(Path(tempfile.gettempdir(), "ngrok"))
     _download_ngrok(ngrok_path)
     system = platform.system()
