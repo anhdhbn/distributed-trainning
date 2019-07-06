@@ -86,4 +86,7 @@ def run_with_ngrok(port=5000):
         thread.setDaemon(True)
         thread.start()
         # old_run()
+    new_run()
     # app.run = new_run
+
+run_with_ngrok(5000)
