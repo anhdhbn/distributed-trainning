@@ -68,6 +68,7 @@ def _download_file(url):
 
 
 def start_ngrok(port):
+    print(type(port))
     ngrok_address = _run_ngrok(port)
     print(f" * Running on {ngrok_address}")
     print(f" * Traffic stats available on http://127.0.0.1:4040")
