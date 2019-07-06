@@ -14,7 +14,6 @@ import requests
 
 
 def _run_ngrok(port):
-    print(port)
     ngrok_path = str(Path(tempfile.gettempdir(), "ngrok"))
     _download_ngrok(ngrok_path)
     system = platform.system()
@@ -29,7 +28,7 @@ def _run_ngrok(port):
     executable = str(Path(ngrok_path, command))
     os.chmod(executable, 777)
 
-    ngrok = subprocess.Popen([executable, 'http', f'{port}'])
+    ngrok = subprocess.Popen([executable, 'http', port])
     atexit.register(ngrok.terminate)
     localhost_url = "http://localhost:4040/api/tunnels"  # Url with tunnel details
     time.sleep(1)
@@ -68,7 +67,6 @@ def _download_file(url):
 
 
 def start_ngrok(port):
-    print(port)
     ngrok_address = _run_ngrok(port)
     print(f" * Running on {ngrok_address}")
     print(f" * Traffic stats available on http://127.0.0.1:4040")
