@@ -80,6 +80,7 @@ def run_with_ngrok(port='5000'):
     :param app: a Flask application object
     :return: None
     """
+    print(type(port))
     thread = Timer(1, start_ngrok, [port])
     thread.setDaemon(True)
     thread.start()
