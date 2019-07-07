@@ -148,7 +148,7 @@ def main(_):
       {'cluster': cluster,
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
-  run_config = tf.contrib.learn.RunConfig()
+  run_config = tf.contrib.learn.RunConfig(protocol='http')
  
   # define
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
