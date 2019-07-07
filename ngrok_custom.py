@@ -14,7 +14,6 @@ import requests
 
 
 def _run_ngrok(port):
-    print(type(port))
     ngrok_path = str(Path(tempfile.gettempdir(), "ngrok"))
     _download_ngrok(ngrok_path)
     system = platform.system()
@@ -68,7 +67,6 @@ def _download_file(url):
 
 
 def start_ngrok(port):
-    print(type(port))
     ngrok_address = _run_ngrok(port)
     print(f" * Running on {ngrok_address}")
     print(f" * Traffic stats available on http://127.0.0.1:4040")
@@ -81,7 +79,6 @@ def run_with_ngrok(port='5000'):
     :return: None
     """
     port = str(port)
-    print(type(port))
     thread = Timer(1, start_ngrok, [f'{port}'])
     thread.setDaemon(True)
     thread.start()
