@@ -146,7 +146,7 @@ def main(_):
              'worker': worker_nodes}
   os.environ['TF_CONFIG'] = json.dumps(
       {'cluster': cluster,
-       'task': {'type': FLAGS.type, 'index': FLAGS.index}})
+       'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
   run_config = tf.contrib.learn.RunConfig()
  
@@ -217,6 +217,12 @@ if __name__ == '__main__':
     type=int,
     default=1,
     help='Port number')
+  parser.add_argument(
+    '--task_id',
+    required=True,
+    type=int,
+    default=1,
+    help='Task id')
   FLAGS, unparsed = parser.parse_known_args()
 
   
