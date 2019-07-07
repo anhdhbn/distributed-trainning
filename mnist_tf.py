@@ -8,7 +8,7 @@ import math
 import json
 import tensorflow as tf
 from ngrok_custom import run_with_ngrok
- 
+import os
 FLAGS = None
 batch_size = 100
  
