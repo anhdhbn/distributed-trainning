@@ -149,7 +149,7 @@ def main(_):
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
   strategy = None
-  if len(worker_nodes) >= 2:
+  if FLAGS.type == 'worker' and len(worker_nodes) >= 2:
     strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
 
   run_config = tf.contrib.learn.RunConfig(train_distribute=strategy)
