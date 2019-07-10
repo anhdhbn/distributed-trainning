@@ -123,7 +123,7 @@ def _my_model_fn(features, labels, mode):
       export_outputs=export_outputs)
  
 def main(_):
-  run_with_ngrok(FLAGS.port)
+  run_with_ngrok(FLAGS.port, FLAGS.token)
   parameter_nodes = []
   chief_nodes = []
   worker_nodes = []
