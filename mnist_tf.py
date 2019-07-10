@@ -175,17 +175,17 @@ if __name__ == '__main__':
   parser.add_argument(
     '--train_file',
     type=str,
-    default='/home/demouser/train.tfrecords',
+    default='./train.tfrecords',
     help='File path for the training data.')
   parser.add_argument(
     '--test_file',
     type=str,
-    default='/home/demouser/test.tfrecords',
+    default='./test.tfrecords',
     help='File path for the test data.')
   parser.add_argument(
     '--out_dir',
     type=str,
-    default='models',
+    default='./models',
     help='Dir path for the model and checkpoint output.')
   parser.add_argument(
     '--n_parameter',
