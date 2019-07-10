@@ -141,7 +141,7 @@ def main(_):
     FLAGS.index = 1
   else:
     FLAGS.index = 0
-  cluster = {'chief': chief_nodes,
+  cluster = {'chier': chief_nodes,
              'ps': parameter_nodes,
              'worker': worker_nodes}
   os.environ['TF_CONFIG'] = json.dumps(
