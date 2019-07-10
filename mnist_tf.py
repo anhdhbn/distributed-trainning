@@ -148,7 +148,11 @@ def main(_):
       {'cluster': cluster,
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
-  run_config = tf.contrib.learn.RunConfig()
+  strategy = None
+  if len(worker_nodes) >= 2:
+    strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
+
+  run_config = tf.contrib.learn.RunConfig(train_distribute=strategy)
   # 'chief', 'evaluator', 'master', 'ps', 'worker'
   # define
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
