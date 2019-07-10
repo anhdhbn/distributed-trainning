@@ -13,7 +13,7 @@ from threading import Timer
 import requests
 
 
-def _run_ngrok(port):
+def _run_ngrok(port, token):
     ngrok_path = str(Path(tempfile.gettempdir(), "ngrok"))
     _download_ngrok(ngrok_path)
     system = platform.system()
@@ -27,7 +27,8 @@ def _run_ngrok(port):
         raise Exception(f"{system} is not supported")
     executable = str(Path(ngrok_path, command))
     os.chmod(executable, 777)
-
+    if token != '':
+        auth = subprocess.Popen([executable, 'authtoken', token])
     ngrok = subprocess.Popen([executable, 'tcp', port])
     atexit.register(ngrok.terminate)
     localhost_url = "http://localhost:4040/api/tunnels"  # Url with tunnel details
@@ -68,12 +69,12 @@ def _download_file(url):
     return download_path
 
 
-def start_ngrok(port):
+def start_ngrok(port, token):
     ngrok_address = _run_ngrok(port)
     print(f" * Running on {ngrok_address}")
     print(f" * Traffic stats available on http://127.0.0.1:4040")
 
-def run_with_ngrok(port='5000'):
+def run_with_ngrok(port='5000', token=''):
     """
     The provided Flask app will be securely exposed to the public internet via ngrok when run,
     and the its ngrok address will be printed to stdout

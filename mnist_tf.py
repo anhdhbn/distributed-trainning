@@ -223,6 +223,12 @@ if __name__ == '__main__':
     type=int,
     default=1,
     help='Task id')
+  parser.add_argument(
+    '--token',
+    required=True,
+    type=str,
+    default=1,
+    help='token ngrok')
   FLAGS, unparsed = parser.parse_known_args()
 
   
