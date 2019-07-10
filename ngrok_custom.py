@@ -82,7 +82,7 @@ def run_with_ngrok(port='5000', token=''):
     :return: None
     """
     port = str(port)
-    thread = Timer(1, start_ngrok, [f'{port}'])
+    thread = Timer(1, start_ngrok, [f'{port}', token])
     thread.setDaemon(True)
     thread.start()
 
