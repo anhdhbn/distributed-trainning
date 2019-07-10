@@ -128,13 +128,13 @@ def main(_):
   chief_nodes = []
   worker_nodes = []
   for i in range(FLAGS.n_parameter):
-    text = input(f'Host of parameter node {i}:')
+    text = input(f'Host of parameter node {i}: ')
     parameter_nodes.append(text)
   for i in range(FLAGS.n_chief):
-    text = input(f'Host of chief node {i}:')
+    text = input(f'Host of chief node {i}: ')
     chief_nodes.append(text)
   for i in range(FLAGS.n_worker):
-    text = input(f'Host of worker node {i}:')
+    text = input(f'Host of worker node {i}: ')
     worker_nodes.append(text)
 
   if FLAGS.type =='worker':
@@ -148,7 +148,7 @@ def main(_):
       {'cluster': cluster,
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
-  run_config = tf.contrib.learn.RunConfig(protocol='http')
+  run_config = tf.contrib.learn.RunConfig()
  
   # define
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
