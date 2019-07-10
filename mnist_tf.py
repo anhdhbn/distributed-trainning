@@ -141,7 +141,7 @@ def main(_):
     FLAGS.index = 1
   else:
     FLAGS.index = 0
-  cluster = {'chier': chief_nodes,
+  cluster = {'chief': chief_nodes,
              'ps': parameter_nodes,
              'worker': worker_nodes}
   os.environ['TF_CONFIG'] = json.dumps(
@@ -149,7 +149,7 @@ def main(_):
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
   run_config = tf.contrib.learn.RunConfig()
- 
+  # 'chief', 'evaluator', 'master', 'ps', 'worker'
   # define
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
     model_fn=_my_model_fn,
