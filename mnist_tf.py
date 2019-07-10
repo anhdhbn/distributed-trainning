@@ -141,9 +141,16 @@ def main(_):
     FLAGS.index = 1
   else:
     FLAGS.index = 0
-  cluster = {'chief': chief_nodes,
-             'ps': parameter_nodes,
-             'worker': worker_nodes}
+  cluster = {}
+  if len(chief_nodes) > 0:
+    cluster['chief'] = chief_nodes
+  if len(parameter_nodes) > 0:
+    cluster['ps'] = parameter_nodes
+  if len(worker_nodes) > 0:
+    cluster['worker'] = worker_nodes
+  # cluster = {'chief': chief_nodes,
+  #            'ps': parameter_nodes,
+  #            'worker': worker_nodes}
   os.environ['TF_CONFIG'] = json.dumps(
       {'cluster': cluster,
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
