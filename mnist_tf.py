@@ -154,8 +154,7 @@ def main(_):
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
     model_fn=_my_model_fn,
     model_dir=FLAGS.out_dir,
-    config=run_config,
-    model_dir="models")
+    config=run_config)
   train_spec = tf.estimator.TrainSpec(
     input_fn=_get_input_fn(FLAGS.train_file, 2),
     max_steps=60000 * 2 / batch_size)
@@ -186,7 +185,7 @@ if __name__ == '__main__':
   parser.add_argument(
     '--out_dir',
     type=str,
-    default='/home/demouser/out',
+    default='models',
     help='Dir path for the model and checkpoint output.')
   parser.add_argument(
     '--n_parameter',
