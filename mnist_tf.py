@@ -159,8 +159,8 @@ def main(_):
   if FLAGS.type == 'worker' and len(worker_nodes) >= 2:
     strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
     print(strategy)
-  # run_config = tf.estimator.RunConfig(train_distribute=strategy)
-  run_config = tf.estimator.RunConfig()
+  run_config = tf.estimator.RunConfig(train_distribute=strategy)
+  # run_config = tf.estimator.RunConfig()
   # 'chief', 'evaluator', 'master', 'ps', 'worker'
   # define
   mnist_fullyconnected_classifier = tf.estimator.Estimator(
