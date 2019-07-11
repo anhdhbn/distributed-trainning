@@ -69,7 +69,7 @@ def _my_input_fn2(X, y, batch_size):
   dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
 
 # Convert the inputs to a Dataset
-  dataset = tf.data.Dataset.from_tensor_slices((images, labels))
+#   dataset = tf.data.Dataset.from_tensor_slices((images, labels))
 
     # Shuffle, repeat, and batch the examples. 
   SHUFFLE_SIZE = 5000
