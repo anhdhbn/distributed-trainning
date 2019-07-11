@@ -253,7 +253,7 @@ if __name__ == '__main__':
     help='token ngrok')
   parser.add_argument(
     '--NAT',
-    required=False,
+    required=None,
     type=str,
     default=True,
     help='token ngrok')
