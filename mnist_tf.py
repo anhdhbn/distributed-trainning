@@ -89,7 +89,7 @@ def main(_):
      
   # run !
   tf.estimator.train_and_evaluate(
-    mnist_fullyconnected_classifier,
+    estimator,
     train_spec,
     eval_spec
   )
