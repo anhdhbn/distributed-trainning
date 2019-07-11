@@ -71,14 +71,14 @@ def main(_):
 
 
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
-  X_train = X_train.reshape(60000,28,28,1)
-  X_test = X_test.reshape(10000,28,28,1)
+  # X_train = X_train.reshape(60000,28,28,1)
+  # X_test = X_test.reshape(10000,28,28,1)
 
   # y_train = to_categorical(y_train)
   # y_test = to_categorical(y_test) 
   
-  trainset = make_dataset(X_train, y_train)
-  testset = make_dataset(X_test, y_test)
+  # trainset = make_dataset(X_train, y_train)
+  # testset = make_dataset(X_test, y_test)
 
   estimator = tf.keras.estimator.model_to_estimator(
     keras_model = tfCompatibleMod,
@@ -95,21 +95,21 @@ def main(_):
 
   print(X_train.shape)
 
-  # train_spec = tf.estimator.TrainSpec(
-  #   input_fn=get_input_fn2(X_train, y_train, batch_size),
-  #   max_steps=60000 * 2 / batch_size)
-  # eval_spec = tf.estimator.EvalSpec(
-  #   input_fn=get_input_fn2(X_test, y_test, batch_size),
-  #   steps=10000 * 1 / batch_size,
-  #   start_delay_secs=0)
-
   train_spec = tf.estimator.TrainSpec(
-    input_fn=get_input_fn(trainset, batch_size),
+    input_fn=get_input_fn2(X_train, y_train, batch_size),
     max_steps=60000 * 2 / batch_size)
   eval_spec = tf.estimator.EvalSpec(
-    input_fn=get_input_fn(testset, batch_size),
+    input_fn=get_input_fn2(X_test, y_test, batch_size),
     steps=10000 * 1 / batch_size,
     start_delay_secs=0)
+
+  # train_spec = tf.estimator.TrainSpec(
+  #   input_fn=get_input_fn(trainset, batch_size),
+  #   max_steps=60000 * 2 / batch_size)
+  # eval_spec = tf.estimator.EvalSpec(
+  #   input_fn=get_input_fn(testset, batch_size),
+  #   steps=10000 * 1 / batch_size,
+  #   start_delay_secs=0)
      
   # run !
   tf.estimator.train_and_evaluate(
