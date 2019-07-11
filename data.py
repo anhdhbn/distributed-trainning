@@ -55,4 +55,4 @@ def _my_input_fn(features, labels, batch_size):
   return dataset.shuffle(1000).repeat().batch(batch_size)
  
 def get_input_fn(features, labels, batch_size):
-  return lambda: _my_input_fn(filepath, num_epochs)
+  return lambda: _my_input_fn(features, labels, batch_size)
