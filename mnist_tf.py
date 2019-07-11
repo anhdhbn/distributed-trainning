@@ -113,8 +113,7 @@ def main(_):
   # run !
   tf.estimator.train_and_evaluate(
     estimator,
-    train_spec,
-    eval_spec
+    train_spec
   )
               
 if __name__ == '__main__':
