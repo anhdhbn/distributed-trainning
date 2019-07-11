@@ -83,11 +83,14 @@ def main(_):
   #   model_fn=_my_model_fn,
   #   model_dir=FLAGS.out_dir,
   #   config=run_config)
+
+  batch_size = 16
+
   train_spec = tf.estimator.TrainSpec(
     input_fn=get_input_fn(trainset, batch_size),
     max_steps=60000 * 2 / batch_size)
   eval_spec = tf.estimator.EvalSpec(
-    input_fn=get_input_fn(testset, batch_size/2),
+    input_fn=get_input_fn(testset, batch_size),
     steps=10000 * 1 / batch_size,
     start_delay_secs=0)
      
