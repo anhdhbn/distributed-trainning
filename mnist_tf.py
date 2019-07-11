@@ -70,7 +70,7 @@ def main(_):
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
   estimator = tf.keras.estimator.model_to_estimator(
-    keras_model = model,
+    keras_model = tfCompatibleMod,
     model_dir=FLAGS.out_dir,
     config=run_config
   )
