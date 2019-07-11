@@ -2,7 +2,7 @@ from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten, MaxPooling2D, Dropout
 
-
+import tensorflow as tf
 
 
 
