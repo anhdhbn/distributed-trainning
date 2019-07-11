@@ -71,11 +71,11 @@ def main(_):
 
 
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
-  # X_train = X_train.reshape(60000,28,28,1)
-  # X_test = X_test.reshape(10000,28,28,1)
+  X_train = X_train.reshape(60000,28,28,1)
+  X_test = X_test.reshape(10000,28,28,1)
 
-  y_train = to_categorical(y_train)
-  y_test = to_categorical(y_test) 
+  # y_train = to_categorical(y_train)
+  # y_test = to_categorical(y_test) 
   
   # trainset = make_dataset(X_train, y_train)
   # testset = make_dataset(X_test, y_test)
