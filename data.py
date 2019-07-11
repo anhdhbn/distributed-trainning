@@ -64,8 +64,8 @@ def _my_input_fn2(X, y, batch_size):
 #   features = tf.cast(X.reshape(60000,28,28,1), tf.float32)* (1. / 255)
 #   labels = tf.cast(y, tf.int32)
 
-  features_placeholder = tf.placeholder(features.dtype, features.shape)
-  labels_placeholder = tf.placeholder(labels.dtype, labels.shape)
+  features_placeholder = tf.placeholder(X.dtype, X.shape)
+  labels_placeholder = tf.placeholder(y.dtype, y.shape)
   dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
 
 # Convert the inputs to a Dataset
