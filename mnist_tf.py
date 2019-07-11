@@ -48,7 +48,7 @@ def _my_model_fn(features, labels, mode):
   # define network and inference
   # (simple 2 fully connected hidden layer : 784->128->64->10)
   sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-  
+
   with tf.name_scope('hidden1'):
     weights = tf.Variable(
       tf.truncated_normal(
@@ -236,7 +236,7 @@ if __name__ == '__main__':
   parser.add_argument(
     '--port',
     required=True,
-    type=int,
+    type=str,
     default=1,
     help='Port number')
   parser.add_argument(
