@@ -50,9 +50,19 @@ import tensorflow as tf
 #     batch_size=batch_size)
 #   return data_batch_image, data_batch_label
 
-def _my_input_fn(features, labels, batch_size):
-  dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
-  return dataset.shuffle(1000).repeat().batch(batch_size)
+def _my_input_fn(dataset, batch_size):
+  return dataset.batch(batch_size)
+#   return dataset.shuffle(1000).repeat().batch(batch_size)
  
-def get_input_fn(features, labels, batch_size):
-  return lambda: _my_input_fn(features, labels, batch_size)
+def get_input_fn(dataset, batch_size):
+  return lambda: _my_input_fn(dataset, batch_size)
+
+
+def make_dataset(X, y):
+  features = tf.cast(X, tf.float32) * (1. / 255)
+  labels = tf.cast(y, tf.int32)
+
+  features_placeholder = tf.placeholder(features.dtype, features.shape)
+  labels_placeholder = tf.placeholder(labels.dtype, labels.shape)
+  dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
+  return dataset

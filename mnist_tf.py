@@ -15,7 +15,7 @@ from data import *
 from keras.datasets import mnist
 
 FLAGS = None
-batch_size = 100
+batch_size = 16
 
 
 def main(_):
@@ -67,7 +67,11 @@ def main(_):
   model = make_model()
   tfCompatibleMod = tf.keras.models.Model(model)
   tfCompatibleMod.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
+  trainset = make_dataset(X_train, y_train)
+  testset = make_dataset(X_test, y_test)
 
   estimator = tf.keras.estimator.model_to_estimator(
     keras_model = tfCompatibleMod,
@@ -80,10 +84,10 @@ def main(_):
   #   model_dir=FLAGS.out_dir,
   #   config=run_config)
   train_spec = tf.estimator.TrainSpec(
-    input_fn=get_input_fn(X_train, y_train, 16),
+    input_fn=get_input_fn(trainset, batch_size),
     max_steps=60000 * 2 / batch_size)
   eval_spec = tf.estimator.EvalSpec(
-    input_fn=get_input_fn(X_test, y_test, 8),
+    input_fn=get_input_fn(testset, batch_size/2),
     steps=10000 * 1 / batch_size,
     start_delay_secs=0)
      
