@@ -253,9 +253,9 @@ if __name__ == '__main__':
     help='token ngrok')
   parser.add_argument(
     '--NAT',
-    required=None,
+    required=False,
     type=str,
-    default=True,
+    default=None,
     help='token ngrok')
   FLAGS, unparsed = parser.parse_known_args()
 
