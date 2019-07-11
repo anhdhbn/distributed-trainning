@@ -9,6 +9,10 @@ import json
 import tensorflow as tf
 from ngrok_custom import run_with_ngrok
 import os
+from requests import get
+
+
+
 FLAGS = None
 batch_size = 100
  
@@ -123,7 +127,11 @@ def _my_model_fn(features, labels, mode):
       export_outputs=export_outputs)
  
 def main(_):
-  run_with_ngrok(FLAGS.port, FLAGS.token)
+  if(FLAGS.NAT):
+    run_with_ngrok(FLAGS.port, FLAGS.token)
+  else:
+    ip = get('https://api.ipify.org').text
+    print('Public IP address is: {}'.format(ip))
   parameter_nodes = []
   chief_nodes = []
   worker_nodes = []
@@ -237,9 +245,15 @@ if __name__ == '__main__':
     help='Task id')
   parser.add_argument(
     '--token',
-    required=True,
+    required=False,
     type=str,
     default=1,
+    help='token ngrok')
+  parser.add_argument(
+    '--NAT',
+    required=False,
+    type=bool,
+    default=True,
     help='token ngrok')
   FLAGS, unparsed = parser.parse_known_args()
 
