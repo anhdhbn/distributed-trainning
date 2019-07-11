@@ -65,6 +65,8 @@ def main(_):
   # define
 
   model = make_model()
+  tfCompatibleMod = tf.keras.models.Model(model)
+  tfCompatibleMod.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
   estimator = tf.keras.estimator.model_to_estimator(

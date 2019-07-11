@@ -16,7 +16,6 @@ def make_model():
     model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.25))
     model.add(Dense(10, activation='softmax'))
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
 
