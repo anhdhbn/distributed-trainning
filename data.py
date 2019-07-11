@@ -61,13 +61,23 @@ def get_input_fn2(X, y, batch_size):
   return lambda: _my_input_fn2(X, y, batch_size)
 
 def _my_input_fn2(X, y, batch_size):
-  features = tf.cast(X.reshape(60000,28,28,1), tf.float32)* (1. / 255)
-  labels = tf.cast(y, tf.int32)
+#   features = tf.cast(X.reshape(60000,28,28,1), tf.float32)* (1. / 255)
+#   labels = tf.cast(y, tf.int32)
 
   features_placeholder = tf.placeholder(features.dtype, features.shape)
   labels_placeholder = tf.placeholder(labels.dtype, labels.shape)
   dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
-  return dataset.batch(batch_size)
+
+# Convert the inputs to a Dataset
+  dataset = tf.data.Dataset.from_tensor_slices((images, labels))
+
+    # Shuffle, repeat, and batch the examples. 
+  SHUFFLE_SIZE = 5000
+  epochs = 50
+  dataset = dataset.shuffle(SHUFFLE_SIZE).repeat(epochs).batch(batch_size)
+  dataset = dataset.prefetch(None)
+
+  return dataset
 
 def make_dataset(X, y):
   features = tf.cast(X, tf.float32) * (1. / 255)
