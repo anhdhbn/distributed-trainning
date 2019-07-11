@@ -129,11 +129,11 @@ def _my_model_fn(features, labels, mode):
       export_outputs=export_outputs)
  
 def main(_):
-  if(FLAGS.NAT):
-    run_with_ngrok(FLAGS.port, FLAGS.token)
-  else:
+  if(len(FLAGS.NAT) >= 1):
     ip = get('https://api.ipify.org').text
     print('Public IP address is: {}'.format(ip))
+  else:  
+    run_with_ngrok(FLAGS.port, FLAGS.token)
   parameter_nodes = []
   chief_nodes = []
   worker_nodes = []
@@ -254,7 +254,7 @@ if __name__ == '__main__':
   parser.add_argument(
     '--NAT',
     required=False,
-    type=bool,
+    type=str,
     default=True,
     help='token ngrok')
   FLAGS, unparsed = parser.parse_known_args()
