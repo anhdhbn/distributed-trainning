@@ -87,12 +87,19 @@ def main(_):
   batch_size = 16
 
   train_spec = tf.estimator.TrainSpec(
-    input_fn=get_input_fn(trainset, batch_size),
+    input_fn=get_input_fn2(X_train, y_train, batch_size),
     max_steps=60000 * 2 / batch_size)
   eval_spec = tf.estimator.EvalSpec(
-    input_fn=get_input_fn(testset, batch_size),
+    input_fn=get_input_fn2(X_test, y_test, batch_size),
     steps=10000 * 1 / batch_size,
     start_delay_secs=0)
+  # train_spec = tf.estimator.TrainSpec(
+  #   input_fn=get_input_fn(trainset, batch_size),
+  #   max_steps=60000 * 2 / batch_size)
+  # eval_spec = tf.estimator.EvalSpec(
+  #   input_fn=get_input_fn(testset, batch_size),
+  #   steps=10000 * 1 / batch_size,
+  #   start_delay_secs=0)
      
   # run !
   tf.estimator.train_and_evaluate(

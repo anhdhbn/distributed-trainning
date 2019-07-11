@@ -57,6 +57,17 @@ def _my_input_fn(dataset, batch_size):
 def get_input_fn(dataset, batch_size):
   return lambda: _my_input_fn(dataset, batch_size)
 
+def get_input_fn2(X, y, batch_size):
+  return lambda: _my_input_fn2(X, y, batch_size)
+
+def _my_input_fn2(X, y, batch_size):
+  features = tf.cast(X, tf.float32) * (1. / 255)
+  labels = tf.cast(y, tf.int32)
+
+  features_placeholder = tf.placeholder(features.dtype, features.shape)
+  labels_placeholder = tf.placeholder(labels.dtype, labels.shape)
+  dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
+  return dataset.batch(batch_size)
 
 def make_dataset(X, y):
   features = tf.cast(X, tf.float32) * (1. / 255)
