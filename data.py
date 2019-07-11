@@ -61,7 +61,7 @@ def get_input_fn2(X, y, batch_size):
   return lambda: _my_input_fn2(X, y, batch_size)
 
 def _my_input_fn2(X, y, batch_size):
-  features = tf.cast(X, tf.float32)
+  features = tf.cast(X, tf.float32)* (1. / 255)
   labels = tf.cast(y, tf.int32)
 
   features_placeholder = tf.placeholder(features.dtype, features.shape)
