@@ -14,6 +14,7 @@ from model import *
 from data import *
 from keras.datasets import mnist
 from keras.utils import to_categorical
+from tensorflow.python.client import device_lib
 
 FLAGS = None
 batch_size = 16
@@ -121,7 +122,16 @@ def main(_):
     eval_spec
   )
               
+
+
+def get_available_gpus():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'GPU']
+
+
+
 if __name__ == '__main__':
+  get_available_gpus()
   parser = argparse.ArgumentParser()
   parser.add_argument(
     '--train_file',
