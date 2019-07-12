@@ -68,7 +68,7 @@ def _my_input_fn2(X, y, batch_size):
   labels_placeholder = tf.placeholder(y.dtype, y.shape)
   # dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
   print("X.dtype", X.dtype, "y.dtype", y.dtype)
-  dataset = tf.data.Dataset.from_tensor_slices((X, y))
+  dataset = tf.data.Dataset.from_tensor_slices((X.astype('float64'), y))
 
 # Convert the inputs to a Dataset
 #   dataset = tf.data.Dataset.from_tensor_slices((images, labels))
