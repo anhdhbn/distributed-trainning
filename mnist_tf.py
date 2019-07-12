@@ -57,9 +57,11 @@ def main(_):
        'task': {'type': FLAGS.type, 'index': FLAGS.task_id}})
   # read TF_CONFIG
   strategy = None
-  if FLAGS.type == 'worker' and len(worker_nodes) >= 1:
-    strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
-    print("strategy", strategy)
+  # if FLAGS.type == 'worker' and len(worker_nodes) >= 1:
+  #   strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
+  #   print("strategy", strategy)
+  strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
+  print("strategy", strategy)
   run_config = tf.estimator.RunConfig(train_distribute=strategy)
   # run_config = tf.estimator.RunConfig()
   # 'chief', 'evaluator', 'master', 'ps', 'worker'
