@@ -66,10 +66,10 @@ def main(_):
   # define
 
   model = make_model()
-  tfCompatibleMod = tf.keras.models.Model(model)
+  # tfCompatibleMod = tf.keras.models.Model(model)
   optimizer = tf.keras.optimizers.SGD()
-  tfCompatibleMod.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-
+  # tfCompatibleMod.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+  model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 
   (X_train, y_train), (X_test, y_test) = mnist.load_data()
   X_train = X_train.reshape(60000,28,28,1)
@@ -82,7 +82,7 @@ def main(_):
   # testset = make_dataset(X_test, y_test)
 
   estimator = tf.keras.estimator.model_to_estimator(
-    keras_model = tfCompatibleMod,
+    keras_model = model,
     model_dir=FLAGS.out_dir,
     config=run_config
   )
