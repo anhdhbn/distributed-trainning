@@ -8,6 +8,8 @@ import tensorflow as tf
 
 
 def make_model():
+  # (/device:GPU:0
+  with tf.device("/device:GPU:0"):
     LABEL_DIMENSIONS = 10
     inputs = tf.keras.Input(shape=(28,28,1))  
     x = tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(inputs)
